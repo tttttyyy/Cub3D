@@ -14,6 +14,7 @@
 # define STRUCTS_H
 
 typedef struct s_ray {
+	double	atan_ra;
 	double	tan_ra;
 	double	posx;
 	double	posy;
@@ -24,6 +25,8 @@ typedef struct s_ray {
 	double	vy;
 	double	rx;
 	double	ry;
+	double	xo;
+	double	yo;
 }				t_ray;
 
 typedef struct s_img {
@@ -96,6 +99,7 @@ typedef struct s_tool
 	void	*mlx;
 	void	*mlx_win;
 	void	*img;
+	double	angle;
 }			t_tool;
 
 #endif
