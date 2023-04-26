@@ -76,6 +76,11 @@ void	print_hero(t_tool hero);
 int		fix_angle(int a);
 void	xpm_to_image(t_tool *hero);
 double	ray_dist(t_ray *ray);
+int     start(t_tool *hero);
+double degToRad(int a);
+void	create_map(t_tool *hero);
+void	raycasting(t_tool *hero, t_ray *ray);
+void	draw_line(t_tool *hero, int i);
 
 
 #endif

@@ -11,25 +11,54 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+void	vertical2(t_tool *hero, t_ray *ray)
+{
+	int		my;
+	int		mx;
+	char	c;
+
+	while(ray->dof<hero->width) 
+	{ 
+		mx=(int)(ray->rx)>>6;
+		my=(int)(ray->ry)>>6;
+		c = get_sym(mx, my, hero);
+		// mp=my*mapX+mx;                     
+		// if (mp>0 && mp<mapX*mapY && map[mp]==1)
+		if (c == '1' || c == 'D')
+		{
+			ray->dof = 8;
+			hero->dis = ray_dist(ray);
+		}//hit         
+		else
+		{
+			ray->rx += ray->xo;
+			ray->ry += ray->yo;
+			ray->dof+=1; 
+		} //check next horizontal
+	} 
+	ray->vx = ray->rx;
+	ray->vy = ray->ry;
+}
 
 void	vertical(t_tool *hero, t_ray *ray)
 {
 	//for (r = 0; r < 60; r++)
 	//{
 	//---Vertical--- 
-	int dof = 0;
+	ray->dof = 0;
+	(void)hero;
 	ray->tan_ra = tan(degToRad(ray->ra));
 	if (cos(degToRad(ray->ra))> 0.001)
 	{
 		ray->rx = (((int)ray->posx >> 6) << 6) + 64;
-		ray->ry = (ray->posx - ray->rx) * ray->tan_ra + ray->py;
+		ray->ry = (ray->posx - ray->rx) * ray->tan_ra + ray->posy;
 		ray->xo = 64;
 		ray->yo = -64 * ray->tan_ra;
 	}//looking left
 	else if (cos(degToRad(ray->ra))<-0.001)
 	{
 		ray->rx = (((int)ray->posx >> 6) << 6) -0.0001;
-		ray->ry = (ray->posx - ray->rx) * ray->tan_ra + ray->py;
+		ray->ry = (ray->posx - ray->rx) * ray->tan_ra + ray->posy;
 		ray->xo = -64;
 		ray->yo = 64 * ray->tan_ra;
 	}//looking right
@@ -37,34 +66,41 @@ void	vertical(t_tool *hero, t_ray *ray)
 	{
 		ray->rx=ray->posx;
 		ray->ry=ray->posy;
-		dof=8;
+		ray->dof = hero->width;
 	}      //looking up or down. no hit 
-	while(dof<8) 
-	{ 
-		mx=(int)(rx)>>6;
-		my=(int)(ry)>>6;
-		mp=my*mapX+mx;                     
-		if (mp>0 && mp<mapX*mapY && map[mp]==1)
+}
+
+void	horizontal2(t_tool *hero, t_ray *ray)
+{
+	int		mx;
+	int		my;
+	char	c;
+
+	while (ray->dof < hero->height)
+	{
+		mx=(int)(ray->rx) >> 6;
+		my=(int)(ray->ry) >> 6;
+		c = get_sym(mx, my, hero);
+		// mp=my*mapX+mx;
+		// if(mp > 0 && mp<mapX*mapY && map[mp]==1)
+		if (c == '1' || c == 'D')
 		{
-			dof = 8;
+			ray->dof=hero->height;
 			hero->dis = ray_dist(ray);
-		}//hit         
+		}//hit
 		else
 		{
-			rx += ray->xo;
-			ry += ray->yo;
-			dof+=1; 
-		} //check next horizontal
+			ray->rx += ray->xo;
+			ray->ry += ray->yo;
+			ray->dof += 1;
+		}//check next horizontal
 	} 
-	ray->vx = ray->rx;
-	ray->vy = ray->ry;
 }
 
 void	horizontal(t_tool *hero, t_ray *ray)
 {
-	int	dof;
-
-	dof = 0;
+	ray->dof = 0;
+	(void)hero;
 	ray->atan_ra = 1.0 / tan(deg_to_rad(ray->ra));
 	if (sin(degToRad(ray->ra)) > 0.001)
 	{
@@ -73,9 +109,9 @@ void	horizontal(t_tool *hero, t_ray *ray)
 		ray->yo = -64;
 		ray->xo = 64 * ray->atan_ra;
 	}//looking up
-	else if (sin(degToRad(ray->ra))<-0.001)
+	else if (sin(degToRad(ray->ra)) < -0.001)
 	{
-		ray->ry = (((int)py >> 6) << 6) + 64;
+		ray->ry = (((int)ray->posy >> 6) << 6) + 64;
 		ray->rx = (ray->posy - ray->ry) * ray->atan_ra + ray->posx;
 		ray->yo = 64;
 		ray->xo = -64 * ray->atan_ra;
@@ -84,26 +120,8 @@ void	horizontal(t_tool *hero, t_ray *ray)
 	{
 		ray->rx = ray->posx;
 		ray->ry = ray->posy;
-		dof=8;
+		ray->dof=hero->height;
 	}//looking straight left or right
-	while (dof < 8)
-	{
-		mx=(int)(ray->rx) >> 6;
-		my=(int)(ray->ry) >> 6;
-		mp=my*mapX+mx;
-		if(mp > 0 && mp<mapX*mapY && map[mp]==1)
-		{
-			dof=8;
-			disH=cos(degToRad(ra))*(rx-px)-sin(degToRad(ra))*(ry-py);
-		}//hit
-		else
-		{
-			ray->rx += ray->xo;
-			ray->ry += ray->yo;
-			dof += 1;
-		}//check next horizontal
-	} 
-  
 }
 
 void	raycasting(t_tool *hero, t_ray *ray)
@@ -118,9 +136,10 @@ void	raycasting(t_tool *hero, t_ray *ray)
 	{
 		hero->dis = 1000000;
 		vertical(hero, ray);
-		//write for vertical and horizontal
+		horizontal(hero, ray);
 		hero->dis = hero->dis * cos(deg_to_rad
 			(fix_angle(hero->pdp.pa - ray->ra)));
+		draw_line(hero, i);
 		ray->ra = fix_angle(ray->ra - hero->angle);
 		++i;
 	}

@@ -14,6 +14,7 @@
 # define STRUCTS_H
 
 typedef struct s_ray {
+	int		dof;
 	double	atan_ra;
 	double	tan_ra;
 	double	posx;
@@ -29,16 +30,8 @@ typedef struct s_ray {
 	double	yo;
 }				t_ray;
 
-typedef struct s_img {
-	void	*no;
-	void	*so;
-	void	*we;
-	void	*ea;
-	char	*add[5];
-	int		bits_per_pixel[5];
-	int		line_length[5];
-	int		endian[5];
-}				t_img;
+// typedef struct s_img {
+// }				t_img;
 
 typedef struct s_pdp
 {
@@ -84,21 +77,33 @@ typedef struct s_gps
 
 typedef struct s_tool
 {
+	void	*no;
+	void	*so;
+	void	*we;
+	void	*ea;
+	char	*add[5];
+	int		bits_per_pixel[5];
+	int		line_length[5];
+	int		endian[5];
 	int		mx;
 	int		my;
 	int		dis;
+	int		linelen;
 	char	**map;
 	char	player;
 	int		width;
 	int		height;
+	int		ray;
+	int		zeros;
 	t_gps	coordin;
 	t_rgb	floor;
 	t_rgb	ceiling;
 	t_pdp	pdp;
-	t_img	imgs;
+	// t_img	imgs;
 	void	*mlx;
 	void	*mlx_win;
 	void	*img;
+	double	stepy;
 	double	angle;
 }			t_tool;
 

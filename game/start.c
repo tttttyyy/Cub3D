@@ -12,12 +12,11 @@
 
 #include "cub3d.h"
 
-int	start(t_tool *hero0)
+int	start(t_tool *hero)
 {
 	// int	x;
 
 	create_map(hero);
 	// x = for mouse
-	
-
+	return (0);
 }

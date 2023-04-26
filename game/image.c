@@ -14,41 +14,41 @@
 
 void	get_addr(t_tool *hero)
 {
-	if (!hero->img.so || !hero->img.we || !hero->img.no || !hero->img.ea)
+	if (!(hero->so || hero->we || hero->no || hero->ea))
 	{
 		write(2, "Error! Image file could not found!\n", 35);
 		//freearray(map)
 		free(hero->mlx);
 		exit(1);
 	}
-	hero->img.addr[1] = mlx_get_data_addr(hero->img.no, &hero->img.bits_per_pixel[1],
-			&hero->img.line_length[1], &hero->img.endian[1]);
-	hero->img.addr[2] = mlx_get_data_addr(hero->img.so, &hero->img.bits_per_pixel[1],
-			&hero->img.line_length[2], &hero->img.endian[2]);
-	hero->img.addr[3] = mlx_get_data_addr(hero->img.we, &hero->img.bits_per_pixel[1],
-			&hero->img.line_length[3], &hero->img.endian[3]);
-	hero->img.addr[4] = mlx_get_data_addr(hero->img.ea, &hero->img.bits_per_pixel[1],
-			&hero->img.line_length[4], &hero->img.endian[4]);
+	hero->add[1] = mlx_get_data_addr(hero->no, &hero->bits_per_pixel[1],
+			&hero->line_length[1], &hero->endian[1]);
+	hero->add[2] = mlx_get_data_addr(hero->so, &hero->bits_per_pixel[1],
+			&hero->line_length[2], &hero->endian[2]);
+	hero->add[3] = mlx_get_data_addr(hero->we, &hero->bits_per_pixel[1],
+			&hero->line_length[3], &hero->endian[3]);
+	hero->add[4] = mlx_get_data_addr(hero->ea, &hero->bits_per_pixel[1],
+			&hero->line_length[4], &hero->endian[4]);
 }
 
 void	xpm_to_image(t_tool *hero)
 {
 	int		i;
-	char	*tmp;
+	// char	*tmp;
 
 	i = 50;
-	tmp = hero->img.so;
-	hero->img.so = mlx_xpm_file_to_image(hero->mlx, hero->img.so, &i, &i);
-	free(tmp);
-	tmp = hero->img.no;
-	hero->img.no = mlx_xpm_file_to_image(hero->mlx, hero->img.no, &i, &i);
-	free(tmp);
-	tmp = hero->img.we;
-	hero->img.we = mlx_xpm_file_to_image(hero->mlx, hero->img.we, &i, &i);
-	free(tmp);
-	tmp = hero->img.ea;
-	hero->img.ea = mlx_xpm_file_to_image(hero->mlx, hero->img.ea, &i, &i);
-	free(tmp);
+	// tmp = hero->so;
+	hero->so = mlx_xpm_file_to_image(hero->mlx, hero->coordin.so, &i, &i);
+	// free(tmp);
+	// tmp = hero->no;
+	hero->no = mlx_xpm_file_to_image(hero->mlx, hero->coordin.no, &i, &i);
+	// free(tmp);
+	// tmp = hero->we;
+	hero->we = mlx_xpm_file_to_image(hero->mlx, hero->coordin.we, &i, &i);
+	// free(tmp);
+	// tmp = hero->ea;
+	hero->ea = mlx_xpm_file_to_image(hero->mlx, hero->coordin.ea, &i, &i);
+	// free(tmp);
 	get_addr(hero);
 }
 
