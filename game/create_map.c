@@ -23,7 +23,7 @@ void	create_map(t_tool *hero)
 {
 	t_ray	ray;
 	if (hero->img)
-	mlx_destroy_image(hero->mlx, hero->img);
+		mlx_destroy_image(hero->mlx, hero->img);
 	hero->img = mlx_new_image(hero->mlx, 1024, 512);
 	if (!hero->img)
 	{

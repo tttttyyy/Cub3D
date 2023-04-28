@@ -15,6 +15,8 @@
 
 typedef struct s_ray {
 	int		dof;
+	int		zerosh;
+	int		zerosv;
 	double	atan_ra;
 	double	tan_ra;
 	double	posx;
@@ -94,7 +96,6 @@ typedef struct s_tool
 	int		width;
 	int		height;
 	int		ray;
-	int		zeros;
 	t_gps	coordin;
 	t_rgb	floor;
 	t_rgb	ceiling;

@@ -55,11 +55,11 @@ void	game(t_tool *hero)
 	hero->pdp.oldtime = 0;
 	hero->angle = 60.0 / 1024;
 	//map_to_window(hero-> hero->mlx, mlx_win);
-	//hero->img = mlx_new_image(hero->mlx, 1024, 512);
 	hero->pdp.dirx = cos(hero->pdp.pa);
 	hero->pdp.diry = -1 * sin(hero->pdp.pa);
 	hero->mlx = mlx_init();
 	xpm_to_image(hero);
+	hero->img = mlx_new_image(hero->mlx, 1024, 512);
 	hero->mlx_win = mlx_new_window(hero->mlx, 1024, 512, "Cub3D");
 	// mlx_pixel_put(hero->mlx, hero->mlx_win, hero->pdp.posx, hero->pdp.posy, 0x00FF0000);
 	mlx_hook(hero->mlx_win, 2, 1L << 0, move_player, hero);
