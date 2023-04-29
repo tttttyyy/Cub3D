@@ -4,7 +4,7 @@ OBJS      	= $(SRCS:.c=.o)
 CC			= cc
 INCLUDE 	= -I./headers #-I./mlx
 RM			= rm -rf
-CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address -g
 M_FLAGS		= -lmlx  -framework OpenGL -framework AppKit  #-Lmlx
 
 %.o : %.c

@@ -25,10 +25,11 @@ void	vertical2(t_tool *hero, t_ray *ray)
 		c = get_sym(mx, my, hero);
 		// mp=my*mapX+mx;                     
 		// if (mp>0 && mp<mapX*mapY && map[mp]==1)
-		if (c == '1' || c == 'D')
+		if (c == '1' /*|| c == 'D'*/)
 		{
 			hero->dis = ray_dist(ray);
 			ray->dof = hero->width;
+			hero->zeros = ray->zeros;
 		}//hit         
 		else
 		{
@@ -51,7 +52,7 @@ void	vertical(t_tool *hero, t_ray *ray)
 	ray->tan_ra = tan(degToRad(ray->ra));
 	if (cos(degToRad(ray->ra)) > 0.0001)
 	{
-		ray->zerosv = 0;
+		ray->zeros = 0;
 		ray->rx = (((int)ray->posx >> 6) << 6) + 64;
 		ray->ry = (ray->posx - ray->rx) * ray->tan_ra + ray->posy;
 		ray->xo = 64;
@@ -60,7 +61,7 @@ void	vertical(t_tool *hero, t_ray *ray)
 	}//looking left
 	else if (cos(degToRad(ray->ra)) < -0.0001)
 	{
-		ray->zerosv = 1;
+		ray->zeros = 1;
 		ray->rx = (((int)ray->posx >> 6) << 6) -0.0001;
 		ray->ry = (ray->posx - ray->rx) * ray->tan_ra + ray->posy;
 		ray->xo = -64;
@@ -88,10 +89,11 @@ void	horizontal2(t_tool *hero, t_ray *ray)
 		c = get_sym(mx, my, hero);
 		// mp=my*mapX+mx;
 		// if(mp > 0 && mp<mapX*mapY && map[mp]==1)
-		if (c == '1' || c == 'D')
+		if (c == '1' /*|| c == 'D'*/)
 		{
 			hero->dis = ray_dist(ray);
 			ray->dof = hero->height;
+			hero->zeros = ray->zerosh;
 		}//hit
 		else
 		{
@@ -148,6 +150,10 @@ void	raycasting(t_tool *hero, t_ray *ray)
 		horizontal(hero, ray);
 		hero->dis = hero->dis * cos(deg_to_rad
 			(fix_angle(hero->pdp.pa - ray->ra)));
+		if (hero->zeros == 0 || hero->zeros == 1)
+			hero->ray = (int)(ray->vy) % 64;
+		else
+			hero->ray = (int)(ray->rx) % 64;
 		draw_line(hero, i);
 		ray->ra = fix_angle(ray->ra - hero->angle);
 		++i;
