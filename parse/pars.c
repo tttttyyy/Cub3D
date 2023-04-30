@@ -27,7 +27,7 @@
 
 void	def_angle(t_tool *hero)
 {
-	if (hero-> player == 'E')
+	if (hero->player == 'E')
 		hero->pdp.pa = 0;
 	else if (hero-> player == 'N')
 		hero->pdp.pa = 90;

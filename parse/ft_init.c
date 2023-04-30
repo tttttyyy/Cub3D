@@ -86,8 +86,8 @@ char	get_pos(char **info, t_pdp *lol)
 		{
 			if (ft_strchr(HERO, info[i][j]))
 			{
-				lol->posx = j;
-				lol->posy = i - 6;
+				lol->posx = j + 0.5;
+				lol->posy = i - 6 + 0.5;
 				return (info[i][j]);
 			}
 			++j;

@@ -89,7 +89,7 @@ typedef struct s_tool
 	int		endian[5];
 	int		mx;
 	int		my;
-	int		dis;
+	double		dis;
 	int		linelen;
 	char	**map;
 	char	player;

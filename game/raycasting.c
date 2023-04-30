@@ -56,7 +56,7 @@ void	vertical(t_tool *hero, t_ray *ray)
 		ray->rx = (((int)ray->posx >> 6) << 6) + 64;
 		ray->ry = (ray->posx - ray->rx) * ray->tan_ra + ray->posy;
 		ray->xo = 64;
-		printf("%f   \n", ray->tan_ra);
+		// printf("%f   \n", ray->tan_ra);
 		ray->yo = -64 * ray->tan_ra;
 	}//looking left
 	else if (cos(degToRad(ray->ra)) < -0.0001)
@@ -76,6 +76,26 @@ void	vertical(t_tool *hero, t_ray *ray)
 	vertical2(hero, ray);
 }
 
+void	ft_horizontal_dist_check(t_tool *hero, t_ray *ray, char c)
+{
+	double	disth;
+
+	disth = ray_dist(ray);
+	if (disth < hero->dis)
+	{
+		hero->zeros = ray->zerosh;
+		if (c == 'D')
+			hero->zeros = 6;
+		hero->dis = disth;
+	}
+	else
+	{
+		ray->rx = ray->vx;
+		ray->ry = ray->vy;
+	}
+	ray->dof = hero->height;
+}
+
 void	horizontal2(t_tool *hero, t_ray *ray)
 {
 	int		mx;
@@ -91,9 +111,10 @@ void	horizontal2(t_tool *hero, t_ray *ray)
 		// if(mp > 0 && mp<mapX*mapY && map[mp]==1)
 		if (c == '1' /*|| c == 'D'*/)
 		{
-			hero->dis = ray_dist(ray);
-			ray->dof = hero->height;
-			hero->zeros = ray->zerosh;
+			ft_horizontal_dist_check(hero, ray, c);
+			// hero->dis = ray_dist(ray);
+			// ray->dof = hero->height;
+			// hero->zeros = ray->zerosh;
 		}//hit
 		else
 		{
@@ -109,7 +130,7 @@ void	horizontal(t_tool *hero, t_ray *ray)
 	ray->dof = 0;
 	(void)hero;
 	ray->atan_ra = 1.0 / tan(deg_to_rad(ray->ra));
-	if (sin(degToRad(ray->ra)) > 0.001)
+	if (sin(degToRad(ray->ra)) > 0.0001)
 	{
 		ray->zerosh = 2;
 		ray->ry = (((int)ray->posy >> 6) << 6) - 0.0001;
@@ -117,7 +138,7 @@ void	horizontal(t_tool *hero, t_ray *ray)
 		ray->yo = -64;
 		ray->xo = 64 * ray->atan_ra;
 	}//looking up
-	else if (sin(degToRad(ray->ra)) < -0.001)
+	else if (sin(degToRad(ray->ra)) < -0.0001)
 	{
 		ray->zerosh = 3;
 		ray->ry = (((int)ray->posy >> 6) << 6) + 64;
@@ -143,7 +164,7 @@ void	raycasting(t_tool *hero, t_ray *ray)
 	ray->ra = fix_angle(hero->pdp.pa + 30);
 	ray->posx = hero->pdp.posx * 64;
 	ray->posy = hero->pdp.posy * 64;
-	while (i < 1024)
+	while (i < 1000)
 	{
 		hero->dis = 1000000;
 		vertical(hero, ray);

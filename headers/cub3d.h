@@ -17,7 +17,7 @@
 # define SPACES  " \n\t"
 # define CHARS  "01NSWE"
 # define HERO  "NSWE"
-# define PI 3.1415926535
+# define PI 3.14159
 # define RD 0.0174533
 
 # include <unistd.h>
@@ -81,6 +81,8 @@ double degToRad(int a);
 void	create_map(t_tool *hero);
 void	raycasting(t_tool *hero, t_ray *ray);
 void	draw_line(t_tool *hero, int i);
+int		exit_game(t_tool *hero);
+
 
 
 #endif

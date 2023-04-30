@@ -49,20 +49,24 @@ void	game(t_tool *hero)
 	// hero.pdp.dirx = -1;
 	// hero.pdp.diry = 0;
 		// printf("hello/n");
-	hero->pdp.planex = 0;
-	hero->pdp.planey = 0.66;
-	hero->pdp.time = 0;
-	hero->pdp.oldtime = 0;
-	hero->angle = 60.0 / 1024;
+	// hero->pdp.planex = 0;
+	// hero->pdp.planey = 0.66;
+	// hero->pdp.time = 0;
+	// hero->pdp.oldtime = 0;
+	hero->angle = 60.0 / 1000;
 	//map_to_window(hero-> hero->mlx, mlx_win);
 	hero->pdp.dirx = cos(hero->pdp.pa);
 	hero->pdp.diry = -1 * sin(hero->pdp.pa);
+	// printf("%f\n", hero->pdp.diry);
 	hero->mlx = mlx_init();
 	xpm_to_image(hero);
-	// hero->img = mlx_new_image(hero->mlx, 1024, 512);
-	hero->mlx_win = mlx_new_window(hero->mlx, 1024, 512, "Cub3D");
+	// hero->img = mlx_new_image(hero->mlx, 1000, 512);
+			// printf("%f\n", hero->angle);
+
+	hero->mlx_win = mlx_new_window(hero->mlx, 1000, 512, "Cub3D");
 	// mlx_pixel_put(hero->mlx, hero->mlx_win, hero->pdp.posx, hero->pdp.posy, 0x00FF0000);
-	mlx_hook(hero->mlx_win, 2, 1L << 0, move_player, hero);
+	mlx_hook(hero->mlx_win, 17, 0, exit_game, hero);
+	mlx_hook(hero->mlx_win, 2, 0, move_player, hero);
 	mlx_loop_hook(hero->mlx, start, hero);
 	mlx_loop(hero->mlx);
 }
