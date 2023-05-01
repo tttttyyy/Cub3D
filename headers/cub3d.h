@@ -19,6 +19,8 @@
 # define HERO  "NSWE"
 # define PI 3.14159
 # define RD 0.0174533
+# define WIDTH 1024
+# define HEIGHT 512
 
 # include <unistd.h>
 # include <math.h>
@@ -82,7 +84,9 @@ void	create_map(t_tool *hero);
 void	raycasting(t_tool *hero, t_ray *ray);
 void	draw_line(t_tool *hero, int i);
 int		exit_game(t_tool *hero);
-
+int		create_trgb(int r, int g, int b);
+void	get_addr(t_tool *hero);
+void	init_structs(t_tool *hero);
 
 
 #endif

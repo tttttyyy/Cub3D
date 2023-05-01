@@ -73,22 +73,61 @@ static char	**init_map(char **info, int w, int h)
 	return (map);
 }
 
-char	get_pos(char **info, t_pdp *lol)
+void	init_plane(t_tool *hero, double i, double j)
+{
+	hero->pdp.planex = i;
+	hero->pdp.planey = j;
+}
+
+void	init_dir(t_tool *hero, double i, double j)
+{
+	hero->pdp.dirx = i;
+	hero->pdp.diry = j;
+}
+
+void	init_player_pos(t_tool *hero, int i, int j)
+{
+	if (hero->map[i][j] == 'S')
+	{
+		init_dir(hero, 1, 0);
+		init_plane(hero, 0, -0.66);
+	}
+	else if (hero->map[i][j] == 'N')
+	{
+		init_dir(hero, -1, 0);
+		init_plane(hero, 0, 0.66);
+	}
+	else if (hero->map[i][j] == 'E')
+	{
+		init_dir(hero, 0, 1);
+		init_plane(hero, 0.66, 0);
+	}
+	else if (hero->map[i][j] == 'W')
+	{
+		init_dir(hero, 0, -1);
+		init_plane(hero, -0.66, 0);
+	}
+}
+
+char	get_pos(char **info, t_tool *lol)
 {
 	int		i;
 	int		j;
 
 	i = 6;
-	while (info && info[i])
+	(void) info;
+	while (lol->map && lol->map[i])
 	{
 		j = 0;
-		while (info[i][j])
+		while (lol->map[i][j])
 		{
-			if (ft_strchr(HERO, info[i][j]))
+			if (ft_strchr(HERO, lol->map[i][j]))
 			{
-				lol->posx = j + 0.5;
-				lol->posy = i - 6 + 0.5;
-				return (info[i][j]);
+				init_player_pos(lol, i, j);
+				lol->pdp.posx = j + 0.5;
+				lol->pdp.posy = i - 6 + 0.5;
+				lol->map[i][j] = '0';
+				return (lol->map[i][j]);
 			}
 			++j;
 		}
@@ -106,7 +145,8 @@ t_tool	init_hero(char **info)
 	hero.coordin = init_coordin(info);
 	hero.ceiling = init_colors(info, 'C');
 	hero.floor = init_colors(info, 'F');
-	hero.player = get_pos(info, &hero.pdp);
+
 	hero.map = init_map(info, hero.width, hero.height);
+	hero.player = get_pos(info, &hero);
 	return (hero);
 }

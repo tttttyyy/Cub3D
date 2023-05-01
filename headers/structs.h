@@ -32,11 +32,27 @@ typedef struct s_ray {
 	double	yo;
 }				t_ray;
 
-// typedef struct s_img {
-// }				t_img;
+typedef struct s_img {
+	void	*ptr;
+	char	*img;
+	int		bpp;
+	int		width;
+	int		height;
+	int		size_line;
+	int		endian;
+}				t_img;
 
 typedef struct s_pdp
 {
+	int		side;
+	int		hit;
+	int		mapx;
+	int		mapy;
+	int		stepx;
+	int		stepy;
+	int		drawend;
+	int		drawstart;
+	int		lineheight;
 	double	pa;
 	double	posx;
 	double	posy;
@@ -49,6 +65,11 @@ typedef struct s_pdp
 	double	camerax;
 	double	raydirx;
 	double	raydiry;
+	double	deltadistx;
+	double	deltadisty;
+	double	sidedistx;
+	double	sidedisty;
+	double	perpwalldist;
 }				t_pdp;
 
 typedef struct s_flags
@@ -83,10 +104,11 @@ typedef struct s_tool
 	void	*so;
 	void	*we;
 	void	*ea;
-	char	*add[5];
-	int		bits_per_pixel[5];
-	int		line_length[5];
-	int		endian[5];
+	// char	*add[5];
+	// int		bits_per_pixel[5];
+	// int		line_length[5];
+	// int		endian[5];
+	int		index;
 	int		mx;
 	int		my;
 	double		dis;
@@ -101,12 +123,16 @@ typedef struct s_tool
 	t_rgb	floor;
 	t_rgb	ceiling;
 	t_pdp	pdp;
-	// t_img	imgs;
+	t_img	*imgs;
 	void	*mlx;
 	void	*mlx_win;
-	void	*img;
+	// void	*img;
+	void	*ptr;
+	char	*img;
 	double	stepy;
 	double	angle;
+	int		f;
+	int		c;
 }			t_tool;
 
 #endif

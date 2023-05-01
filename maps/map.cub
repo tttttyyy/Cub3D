@@ -1,10 +1,10 @@
 NO texture/wall1.xpm
-SO texture/wall1.xpm
-EA texture/wall1.xpm
-WE texture/wall1.xpm
+SO texture/wall2.xpm
+EA texture/wall3.xpm
+WE texture/wall4.xpm
 
-F  0,100,100
-C   255,30,123
+F  0,0,255
+C   124,0,125
 
            1111111111111111111111111
            1000000000110000000000001

@@ -52,7 +52,7 @@ void	vertical(t_tool *hero, t_ray *ray)
 	ray->tan_ra = tan(degToRad(ray->ra));
 	if (cos(degToRad(ray->ra)) > 0.0001)
 	{
-		ray->zeros = 0;
+		ray->zeros = 2;
 		ray->rx = (((int)ray->posx >> 6) << 6) + 64;
 		ray->ry = (ray->posx - ray->rx) * ray->tan_ra + ray->posy;
 		ray->xo = 64;
@@ -132,7 +132,7 @@ void	horizontal(t_tool *hero, t_ray *ray)
 	ray->atan_ra = 1.0 / tan(deg_to_rad(ray->ra));
 	if (sin(degToRad(ray->ra)) > 0.0001)
 	{
-		ray->zerosh = 2;
+		ray->zerosh = 4;
 		ray->ry = (((int)ray->posy >> 6) << 6) - 0.0001;
 		ray->rx = (ray->posy - ray->ry) * ray->atan_ra + ray->posx;
 		ray->yo = -64;
@@ -168,17 +168,15 @@ void	raycasting(t_tool *hero, t_ray *ray)
 	{
 		// printf("%f  %f   %f\n", hero->pdp.pa, ray->ra, hero->dis);
 		hero->dis = 1000000;
-		// pause();
 		vertical(hero, ray);
-
 		horizontal(hero, ray);
 		hero->dis = hero->dis * cos(deg_to_rad
 			(fix_angle(hero->pdp.pa - ray->ra)));
-		if (hero->zeros == 0 || hero->zeros == 1)
+		if (hero->zeros == 2 || hero->zeros == 1)
 			hero->ray = (int)(ray->vy) % 64;
 		else
 			hero->ray = (int)(ray->rx) % 64;
-		draw_line(hero, i);
+		// draw_line(hero, i);
 		ray->ra = fix_angle(ray->ra - hero->angle);
 		// printf("%f\n", hero->angle);
 		// if(i == 6)
