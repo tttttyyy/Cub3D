@@ -175,7 +175,7 @@ void	raycasting(t_tool *hero, t_ray *ray)
 			hero->ray = (int)(ray->vy) % 64;
 		else
 			hero->ray = (int)(ray->rx) % 64;
-		draw_line(hero, i);
+		// draw_line(hero, i);
 		ray->ra = fix_angle(ray->ra - hero->angle);
 		++i;
 	}

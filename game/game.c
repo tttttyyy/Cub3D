@@ -63,7 +63,7 @@ void	game(t_tool *hero)
 	// hero->img = mlx_new_image(hero->mlx, 1000, 512);
 			// printf("%f\n", hero->angle);
 
-	hero->mlx_win = mlx_new_window(hero->mlx, 1000, 512, "Cub3D");
+	hero->mlx_win = mlx_new_window(hero->mlx, 1000, 1000, "Cub3D");
 	// mlx_pixel_put(hero->mlx, hero->mlx_win, hero->pdp.posx, hero->pdp.posy, 0x00FF0000);
 	mlx_hook(hero->mlx_win, 17, 0, exit_game, hero);
 	mlx_hook(hero->mlx_win, 2, 0, move_player, hero);

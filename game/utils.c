@@ -54,7 +54,7 @@ void	draw_line_2(t_tool *hero, int i, int lineh, int lineoff)
 
 	k = -1;
 	y = 0;
-	while (y < hero->height)
+	while (y < 1000)
 	{
 		if (y < lineoff)
 			my_mlx_pixel_put(hero, i, y,
@@ -73,14 +73,14 @@ void	draw_line(t_tool *hero, int i)
 	int	lineh;
 	int	lineoff;
 
-	lineh = (hero->height << 5) / hero->dis;
+	lineh = (1000 << 5) / hero->dis;
 	hero->stepy = 0;
 	hero->linelen = lineh;
-	if (lineh > hero->height)
+	if (lineh > 1000)
 	{
-		hero->stepy = ((lineh - hero->height) >> 1);
-		lineh = hero->height;
+		hero->stepy = ((lineh - 1000) >> 1);
+		lineh = 1000;
 	}
-	lineoff = (hero->height - lineh) >> 1;
+	lineoff = (1000 - lineh) >> 1;
 	draw_line_2(hero, i, lineh, lineoff);
 }

@@ -24,7 +24,7 @@ void	create_map(t_tool *hero)
 	t_ray	ray;
 	if (hero->img)
 		mlx_destroy_image(hero->mlx, hero->img);
-	hero->img = mlx_new_image(hero->mlx, 1000, 512);
+	hero->img = mlx_new_image(hero->mlx, 1000, 1000);
 	if (!hero->img)
 	{
 		write(2, "Error\nImage couldn't be created!\n", 32);
