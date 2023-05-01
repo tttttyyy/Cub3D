@@ -166,8 +166,11 @@ void	raycasting(t_tool *hero, t_ray *ray)
 	ray->posy = hero->pdp.posy * 64;
 	while (i < 1000)
 	{
+		// printf("%f  %f   %f\n", hero->pdp.pa, ray->ra, hero->dis);
 		hero->dis = 1000000;
+		// pause();
 		vertical(hero, ray);
+
 		horizontal(hero, ray);
 		hero->dis = hero->dis * cos(deg_to_rad
 			(fix_angle(hero->pdp.pa - ray->ra)));
@@ -175,8 +178,11 @@ void	raycasting(t_tool *hero, t_ray *ray)
 			hero->ray = (int)(ray->vy) % 64;
 		else
 			hero->ray = (int)(ray->rx) % 64;
-		// draw_line(hero, i);
+		draw_line(hero, i);
 		ray->ra = fix_angle(ray->ra - hero->angle);
+		// printf("%f\n", hero->angle);
+		// if(i == 6)
+		// 	exit(1);
 		++i;
 	}
 }

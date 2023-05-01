@@ -12,12 +12,12 @@
 
 #include "cub3d.h"
 
-int fix_angle(int a)
+double fix_angle(double a)
 {
-	if (a > 359)
-		a -= 360;
-	else if (a < 0) 
-		a += 360;
+	if (a >= 360)
+		a = a - 360;
+	else if (a <= -1) 
+		a = a + 360;
 	return (a);
 }
 

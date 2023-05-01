@@ -73,7 +73,7 @@ void	move_w(t_tool *hero);
 char	get_sym(int mx, int my, t_tool *hero);
 void	put_sym(int mx, int my, t_tool *hero, char c);
 void	print_hero(t_tool hero);
-int		fix_angle(int a);
+double		fix_angle(double a);
 void	xpm_to_image(t_tool *hero);
 double	ray_dist(t_ray *ray);
 int     start(t_tool *hero);
