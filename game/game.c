@@ -90,6 +90,7 @@ int	draw_walls(t_tool *hero, char *dest, char *dest_2, int texx)
 	int		i;
 	int		n;
 
+	(void)texy;
 	n = check_nwse(hero);
 	i = hero->pdp.drawstart;
 	texx = (int)ft_texx(hero, n);
@@ -223,7 +224,6 @@ void	init_win(t_tool *hero)
 
 	i = 0;
 	// find_pos_player(hero);
-	printf("%s\n", hero->coordin.so);
 	hero->imgs[0].ptr = mlx_new_image(hero->mlx, WIDTH, HEIGHT);
 	hero->imgs[0].img = mlx_get_data_addr(hero->imgs[0].ptr, \
 	&hero->imgs[0].bpp, &hero->imgs[0].size_line, &hero->imgs[0].endian);
@@ -266,8 +266,8 @@ void	game(t_tool *hero)
 	// hero->pdp.diry = -1 * sin(hero->pdp.pa);
 	// printf("%f\n", hero->pdp.diry);
 	init_structs(hero);
-	hero->mlx = mlx_init();
-	hero->mlx_win = mlx_new_window(hero->mlx, 1000, 1000, "Cub3D");
+	// hero->mlx = mlx_init();
+	// hero->mlx_win = mlx_new_window(hero->mlx, WIDTH, HEIGHT, "Cub3D");
 	xpm_to_image(hero);
 	init_win(hero);
 	// hero->img = mlx_new_image(hero->mlx, 1000, 512);

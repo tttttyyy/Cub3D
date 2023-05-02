@@ -55,21 +55,14 @@ int	create_trgb(int r, int g, int b)
 void	xpm_to_image(t_tool *hero)
 {
 	int		i;
-	// char	*tmp;
 
 	i = 64;
-	// tmp = hero->so;
+	hero->mlx = mlx_init();
+	hero->mlx_win = mlx_new_window(hero->mlx, WIDTH, HEIGHT, "Cub3D");
 	hero->so = mlx_xpm_file_to_image(hero->mlx, hero->coordin.so, &i, &i);
-	// free(tmp);
-	// tmp = hero->no;
 	hero->no = mlx_xpm_file_to_image(hero->mlx, hero->coordin.no, &i, &i);
-	// free(tmp);
-	// tmp = hero->we;
 	hero->we = mlx_xpm_file_to_image(hero->mlx, hero->coordin.we, &i, &i);
-	// free(tmp);
-	// tmp = hero->ea;
 	hero->ea = mlx_xpm_file_to_image(hero->mlx, hero->coordin.ea, &i, &i);
-	// free(tmp);
 	hero->f = create_trgb(hero->ceiling.r, hero->ceiling.g, hero->ceiling.b);
 	hero->f = create_trgb(hero->floor.r, hero->floor.g, hero->floor.b);
 	if (hero->mlx == NULL || hero->mlx_win == NULL)
@@ -78,19 +71,4 @@ void	xpm_to_image(t_tool *hero)
 		exit_game(hero);
 	if (hero->we == NULL || hero->ea == NULL)
 		exit_game(hero);
-
-	// get_addr(hero);
 }
-
-// void	hero_to_window(t_tool hero, void *mlx, void *mlx_win)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	x = 0;
-// 	y = 0;
-// 	while (x < 50 && ++x)
-// 	{
-// 		hero.pdp.camerax = 2 * x / double()
-// 	}
-// }
