@@ -21,6 +21,7 @@
 # define RD 0.0174533
 # define WIDTH 1024
 # define HEIGHT 512
+# define MOVE_SPEED 0.2
 
 # include <unistd.h>
 # include <math.h>

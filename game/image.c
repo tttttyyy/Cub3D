@@ -14,13 +14,13 @@
 
 void	get_addr(t_tool *hero)
 {
-	if (!(hero->so || hero->we || hero->no || hero->ea))
-	{
-		write(2, "Error! Image file could not found!\n", 35);
-		//freearray(map)
-		free(hero->mlx);
-		exit(1);
-	}
+	// if (!(hero->so || hero->we || hero->no || hero->ea))
+	// {
+	// 	write(2, "Error! Image file could not found!\n", 35);
+	// 	//freearray(map)
+	// 	free(hero->mlx);
+	// 	exit(1);
+	// }
 	hero->imgs[1].img = mlx_get_data_addr \
 	(hero->no, &hero->imgs[1].bpp, \
 	&hero->imgs[1].size_line, &hero->imgs[1].endian);

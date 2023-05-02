@@ -217,13 +217,77 @@ void	continue_init_win(t_tool *hero)
 	norm_init_win(hero);
 }
 
+void	init_plane(t_tool *hero, double i, double j)
+{
+	hero->pdp.planex = i;
+	hero->pdp.planey = j;
+}
+
+void	init_dir(t_tool *hero, double i, double j)
+{
+	hero->pdp.dirx = i;
+	hero->pdp.diry = j;
+}
+
+void	init_player_pos(t_tool *hero, int i, int j)
+{
+	if (hero->map[i][j] == 'S')
+	{
+		init_dir(hero, 1, 0);
+		init_plane(hero, 0, -0.66);
+	}
+	else if (hero->map[i][j] == 'N')
+	{
+		init_dir(hero, -1, 0);
+		init_plane(hero, 0, 0.66);
+	}
+	else if (hero->map[i][j] == 'E')
+	{
+		init_dir(hero, 0, 1);
+		init_plane(hero, 0.66, 0);
+	}
+	else if (hero->map[i][j] == 'W')
+	{
+		init_dir(hero, 0, -1);
+		init_plane(hero, -0.66, 0);
+	}
+}
+
+void	find_pos_player(t_tool *hero)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (hero->map[i])
+	{
+		j = 0;
+		while (hero->map[i][j])
+		{
+			if (hero->map[i][j] == 'N' || \
+				hero->map[i][j] == 'S' || \
+				hero->map[i][j] == 'E' || \
+				hero->map[i][j] == 'W')
+			{
+				init_player_pos(hero, i, j);
+				hero->pdp.posx = i + 0.5;
+				hero->pdp.posy = j + 0.5;
+				hero->map[i][j] = '0';
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 void	init_win(t_tool *hero)
 {
 	(void)hero;
 	int	i;
 
 	i = 0;
-	// find_pos_player(hero);
+	find_pos_player(hero);
 	hero->imgs[0].ptr = mlx_new_image(hero->mlx, WIDTH, HEIGHT);
 	hero->imgs[0].img = mlx_get_data_addr(hero->imgs[0].ptr, \
 	&hero->imgs[0].bpp, &hero->imgs[0].size_line, &hero->imgs[0].endian);
@@ -274,8 +338,8 @@ void	game(t_tool *hero)
 			// printf("%f\n", hero->angle);
 
 	// mlx_pixel_put(hero->mlx, hero->mlx_win, hero->pdp.posx, hero->pdp.posy, 0x00FF0000);
-	// mlx_hook(hero->mlx_win, 17, 0, exit_game, hero);
-	// mlx_hook(hero->mlx_win, 2, 0, move_player, hero);
+	mlx_hook(hero->mlx_win, 17, 1L << 0, exit_game, hero);
+	mlx_hook(hero->mlx_win, 2, 1L << 0, move_player, hero);
 	// mlx_loop_hook(hero->mlx, start, hero);
 	mlx_loop(hero->mlx);
 }

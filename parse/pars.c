@@ -11,19 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <math.h>
-
-// void	init_params(t_tool *hero)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < 9)
-// 	{
-// 		hero->addr[array_counter] = NULL;
-// 		++i;
-// 	}
-// }
 
 void	def_angle(t_tool *hero)
 {

@@ -62,24 +62,38 @@
 
 void	move_w(t_tool *hero)
 {
-	char sym;
+	int	x;
+	int	y;
 
-	hero->mx = hero->pdp.posx + (hero->pdp.dirx * 0.2);
-	hero->my = hero->pdp.posy + (hero->pdp.diry * 0.2);
-	sym = get_sym(hero->mx, hero->my, hero);
-	// sym = write our getmapsymulation
-	if (sym == '0' || sym == 'x')
-	{
-		if (sym == 'x')
-		{
-			put_sym(hero->mx, hero->my, hero, '0');
-			// i guess other things were for bonus
-			// if you want we can do it
-			// write our put map sym
-		}
-		// then come steps of the player
-		hero->pdp.posx += hero->pdp.dirx * 0.1;//why 0.1
-		hero->pdp.posy += hero->pdp.diry * 0.1;
+	x = (int)(hero->pdp.posx + \
+	hero->pdp.dirx * (MOVE_SPEED + 0.1));
+	y = (int)hero->pdp.posy;
+	if (hero->map[x][y] == '0')
+		hero->pdp.posx += hero->pdp.dirx * MOVE_SPEED;
+	x = (int)hero->pdp.posx;
+	y = (int)(hero->pdp.posy + \
+	hero->pdp.diry * (MOVE_SPEED + 0.1));
+	if (hero->map[x][y] == '0')
+		hero->pdp.posy += hero->pdp.diry * MOVE_SPEED;
+
+	// char sym;
+
+	// hero->mx = hero->pdp.posx + (hero->pdp.dirx * 0.2);
+	// hero->my = hero->pdp.posy + (hero->pdp.diry * 0.2);
+	// sym = get_sym(hero->mx, hero->my, hero);
+	// // sym = write our getmapsymulation
+	// if (sym == '0' || sym == 'x')
+	// {
+	// 	if (sym == 'x')
+	// 	{
+	// 		put_sym(hero->mx, hero->my, hero, '0');
+	// 		// i guess other things were for bonus
+	// 		// if you want we can do it
+	// 		// write our put map sym
+	// 	}
+	// 	// then come steps of the player
+	// 	hero->pdp.posx += hero->pdp.dirx * 0.1;//why 0.1
+	// 	hero->pdp.posy += hero->pdp.diry * 0.1;
 
 	}
 	// if (hero->map[(int)hero->pdp.posy - 1][(int)hero->pdp.posx] != '1')
@@ -90,4 +104,4 @@ void	move_w(t_tool *hero)
 	// 	mlx_clear_window(hero->mlx, hero->mlx_win);
 	// 	draw_map(hero);
 	// }
-}
+// }

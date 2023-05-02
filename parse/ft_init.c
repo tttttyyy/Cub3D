@@ -73,41 +73,41 @@ static char	**init_map(char **info, int w, int h)
 	return (map);
 }
 
-void	init_plane(t_tool *hero, double i, double j)
-{
-	hero->pdp.planex = i;
-	hero->pdp.planey = j;
-}
+// void	init_plane(t_tool *hero, double i, double j)
+// {
+// 	hero->pdp.planex = i;
+// 	hero->pdp.planey = j;
+// }
 
-void	init_dir(t_tool *hero, double i, double j)
-{
-	hero->pdp.dirx = i;
-	hero->pdp.diry = j;
-}
+// void	init_dir(t_tool *hero, double i, double j)
+// {
+// 	hero->pdp.dirx = i;
+// 	hero->pdp.diry = j;
+// }
 
-void	init_player_pos(t_tool *hero, int i, int j)
-{
-	if (hero->map[i][j] == 'S')
-	{
-		init_dir(hero, 1, 0);
-		init_plane(hero, 0, -0.66);
-	}
-	else if (hero->map[i][j] == 'N')
-	{
-		init_dir(hero, -1, 0);
-		init_plane(hero, 0, 0.66);
-	}
-	else if (hero->map[i][j] == 'E')
-	{
-		init_dir(hero, 0, 1);
-		init_plane(hero, 0.66, 0);
-	}
-	else if (hero->map[i][j] == 'W')
-	{
-		init_dir(hero, 0, -1);
-		init_plane(hero, -0.66, 0);
-	}
-}
+// void	init_player_pos(t_tool *hero, int i, int j)
+// {
+// 	if (hero->map[i][j] == 'S')
+// 	{
+// 		init_dir(hero, 1, 0);
+// 		init_plane(hero, 0, -0.66);
+// 	}
+// 	else if (hero->map[i][j] == 'N')
+// 	{
+// 		init_dir(hero, -1, 0);
+// 		init_plane(hero, 0, 0.66);
+// 	}
+// 	else if (hero->map[i][j] == 'E')
+// 	{
+// 		init_dir(hero, 0, 1);
+// 		init_plane(hero, 0.66, 0);
+// 	}
+// 	else if (hero->map[i][j] == 'W')
+// 	{
+// 		init_dir(hero, 0, -1);
+// 		init_plane(hero, -0.66, 0);
+// 	}
+// }
 
 char	get_pos(char **info, t_tool *lol)
 {
@@ -123,10 +123,10 @@ char	get_pos(char **info, t_tool *lol)
 		{
 			if (ft_strchr(HERO, lol->map[i][j]))
 			{
-				init_player_pos(lol, i, j);
-				lol->pdp.posx = j + 0.5;
-				lol->pdp.posy = i - 6 + 0.5;
-				lol->map[i][j] = '0';
+				// init_player_pos(lol, i, j);
+				// lol->pdp.posx = j + 0.5;
+				// lol->pdp.posy = i - 6 + 0.5;
+				// lol->map[i][j] = '0';
 				return (lol->map[i][j]);
 			}
 			++j;

@@ -16,7 +16,7 @@ int	exit_game(t_tool *hero)
 {
 	mlx_destroy_window(hero->mlx, hero->mlx_win);
 	//free_game(hero); menq petqa grenq struct jnjox
-	exit(0);
+	exit(0);//kam 1 dunno
 }
 
 // void	create_map(t_tool *hero)
