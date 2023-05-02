@@ -88,6 +88,6 @@ int		exit_game(t_tool *hero);
 int		create_trgb(int r, int g, int b);
 void	get_addr(t_tool *hero);
 void	init_structs(t_tool *hero);
-
+void	init_win(t_tool *hero);
 
 #endif

@@ -35,6 +35,7 @@ int	move_player(int key, t_tool *hero)
 	{
 		exit(0); //exit_game(hero);
 	}
+	init_win(hero);
 	return (0);
 }
 
