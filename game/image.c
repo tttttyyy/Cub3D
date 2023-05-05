@@ -56,13 +56,13 @@ void	xpm_to_image(t_tool *hero)
 {
 	int		i;
 
-	i = 64;
+	i = 0;
 	hero->mlx = mlx_init();
 	hero->mlx_win = mlx_new_window(hero->mlx, WIDTH, HEIGHT, "Cub3D");
-	hero->so = mlx_xpm_file_to_image(hero->mlx, hero->coordin.so, &i, &i);
-	hero->no = mlx_xpm_file_to_image(hero->mlx, hero->coordin.no, &i, &i);
-	hero->we = mlx_xpm_file_to_image(hero->mlx, hero->coordin.we, &i, &i);
-	hero->ea = mlx_xpm_file_to_image(hero->mlx, hero->coordin.ea, &i, &i);
+	hero->so = mlx_xpm_file_to_image(hero->mlx, hero->coordin.so, &hero->imgs[1].width, &hero->imgs[1].height);
+	hero->no = mlx_xpm_file_to_image(hero->mlx, hero->coordin.no, &hero->imgs[2].width, &hero->imgs[2].height);
+	hero->we = mlx_xpm_file_to_image(hero->mlx, hero->coordin.we, &hero->imgs[3].width, &hero->imgs[3].height);
+	hero->ea = mlx_xpm_file_to_image(hero->mlx, hero->coordin.ea, &hero->imgs[4].width, &hero->imgs[4].height);
 	hero->f = create_trgb(hero->ceiling.r, hero->ceiling.g, hero->ceiling.b);
 	hero->f = create_trgb(hero->floor.r, hero->floor.g, hero->floor.b);
 	if (hero->mlx == NULL || hero->mlx_win == NULL)

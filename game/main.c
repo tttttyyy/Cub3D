@@ -22,6 +22,6 @@ int	main(int argc, char **argv)
 	}
 	hero = parser(argv[1]);
 	game(&hero);
-	// system("leaks cub3");
+	// system("leaks cub3D");
 	return (0);
 }

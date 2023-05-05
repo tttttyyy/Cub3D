@@ -13,6 +13,15 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+typedef struct s_data
+{
+	int		pos_x;
+	int		pos_y;
+	char	**map;
+	int		x;
+	int		y;
+}				t_data;
+
 typedef struct s_ray {
 	int		dof;
 	int		zerosh;
@@ -124,6 +133,7 @@ typedef struct s_tool
 	t_rgb	ceiling;
 	t_pdp	pdp;
 	t_img	*imgs;
+	t_data	data;
 	void	*mlx;
 	void	*mlx_win;
 	// void	*img;

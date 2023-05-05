@@ -24,7 +24,10 @@ int	move_player(int key, t_tool *hero)
 	else if (key == 13)
 		move_w(hero);
 	else if (key == 53)
+	{
+			system("leaks cub3D");
 		exit(0); //exit_game(hero);
+	}
 	if (key == 124)
 		rotate_right(hero, -ROTATE_SPEED);
 	if (key == 123)
@@ -304,6 +307,35 @@ void	init_win(t_tool *hero)
 	hero->imgs[0].ptr, 0, 0);
 }
 
+t_data	data_collector(char **m)
+{
+	t_data	data;
+
+	data.map = m;
+	data.x = -1;
+	data.y = -1;
+	// getter_cub(&data, cub);
+	return (data);
+	while (data.map[++(data.y)])
+	{
+		data.x = -1;
+		while (data.map[++data.x])
+		{
+			if (data.map[data.x][data.y] == 'E' || \
+			data.map[data.x][data.y] == 'N' \
+			|| data.map[data.x][data.y] == 'S' || \
+			data.map[data.x][data.y] == 'W')
+			{
+				data.pos_x = data.x;
+				data.pos_y = data.y;
+				break ;
+			}
+		}
+	}
+	data.x = -1;
+	data.y = -1;
+}
+
 void	game(t_tool *hero)
 {
 	// char	*addr;
@@ -325,6 +357,7 @@ void	game(t_tool *hero)
 	// hero->pdp.diry = -1 * sin(hero->pdp.pa);
 	// printf("%f\n", hero->pdp.diry);
 	init_structs(hero);
+	hero->data = data_collector(hero->map);
 	// hero->mlx = mlx_init();
 	// hero->mlx_win = mlx_new_window(hero->mlx, WIDTH, HEIGHT, "Cub3D");
 	xpm_to_image(hero);
