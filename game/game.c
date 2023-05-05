@@ -15,19 +15,19 @@
 int	move_player(int key, t_tool *hero)
 {
 	// hero->pdp.pa = 90;
-	// if (key == 0 || key == 123)
-	// {
-	// 	move_a(hero);
-	// }
-	// else if (key == 1 || key == 125)
-	// {
-	// 	move_s(hero);
-	// }
-	// else if (key == 2 || key == 124)
-	// {
-	// 	move_d(hero);
-	// }
-	if (key == 13 || key == 126)
+	if (key == 0 || key == 123)
+	{
+		move_a(hero);
+	}
+	else if (key == 1 || key == 125)
+	{
+		move_s(hero);
+	}
+	else if (key == 2 || key == 124)
+	{
+		move_d(hero);
+	}
+	else if (key == 13 || key == 126)
 	{
 		move_w(hero);
 	}

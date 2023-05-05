@@ -12,6 +12,74 @@
 
 #include "cub3d.h"
 
+void	move_a(t_tool *hero)
+{
+	int	x;
+	int	y;
+
+	x = (int)(hero->pdp.posx - hero->pdp.planex * \
+	(MOVE_SPEED + 0.1));
+	y = (int)hero->pdp.posy;
+	if (hero->map[x][y] == '0')
+		hero->pdp.posx -= hero->pdp.planex * MOVE_SPEED;
+	x = (int)hero->pdp.posx;
+	y = (int)(hero->pdp.posy - hero->pdp.planey * \
+	(MOVE_SPEED + 0.1));
+	if (hero->map[x][y] == '0')
+		hero->pdp.posy -= hero->pdp.planey * MOVE_SPEED;
+}
+
+void	move_d(t_tool *hero)
+{
+	int	x;
+	int	y;
+
+	x = (int)(hero->pdp.posx + hero->pdp.planex * \
+	(MOVE_SPEED + 0.1));
+	y = (int)hero->pdp.posy;
+	if (hero->map[x][y] == '0')
+		hero->pdp.posx += hero->pdp.planex * MOVE_SPEED;
+	x = (int)hero->pdp.posx;
+	y = (int)(hero->pdp.posy + hero->pdp.planey * \
+	(MOVE_SPEED + 0.1));
+	if (hero->map[x][y] == '0')
+		hero->pdp.posy += hero->pdp.planey * MOVE_SPEED;
+}
+
+void	move_s(t_tool *hero)
+{
+	int	x;
+	int	y;
+
+	x = (int)(hero->pdp.posx - \
+	hero->pdp.dirx * (MOVE_SPEED + 0.1));
+	y = (int)hero->pdp.posy;
+	if (hero->map[x][y] == '0')
+		hero->pdp.posx -= hero->pdp.dirx * MOVE_SPEED;
+	x = (int)hero->pdp.posx;
+	y = (int)(hero->pdp.posy - \
+	hero->pdp.diry * (MOVE_SPEED + 0.1));
+	if (hero->map[x][y] == '0')
+		hero->pdp.posy -= hero->pdp.diry * MOVE_SPEED;
+}
+
+void	move_w(t_tool *hero)
+{
+	int	x;
+	int	y;
+
+	x = (int)(hero->pdp.posx + \
+	hero->pdp.dirx * (MOVE_SPEED + 0.1));
+	y = (int)hero->pdp.posy;
+	if (hero->map[x][y] == '0')
+		hero->pdp.posx += hero->pdp.dirx * MOVE_SPEED;
+	x = (int)hero->pdp.posx;
+	y = (int)(hero->pdp.posy + \
+	hero->pdp.diry * (MOVE_SPEED + 0.1));
+	if (hero->map[x][y] == '0')
+		hero->pdp.posy += hero->pdp.diry * MOVE_SPEED;
+}
+
 // void	move_a(t_tool *hero)
 // {
 // 	hero->pdp.pa -= 0.1;
@@ -60,22 +128,6 @@
 // 	}
 // }
 
-void	move_w(t_tool *hero)
-{
-	int	x;
-	int	y;
-
-	x = (int)(hero->pdp.posx + \
-	hero->pdp.dirx * (MOVE_SPEED + 0.1));
-	y = (int)hero->pdp.posy;
-	if (hero->map[x][y] == '0')
-		hero->pdp.posx += hero->pdp.dirx * MOVE_SPEED;
-	x = (int)hero->pdp.posx;
-	y = (int)(hero->pdp.posy + \
-	hero->pdp.diry * (MOVE_SPEED + 0.1));
-	if (hero->map[x][y] == '0')
-		hero->pdp.posy += hero->pdp.diry * MOVE_SPEED;
-
 	// char sym;
 
 	// hero->mx = hero->pdp.posx + (hero->pdp.dirx * 0.2);
@@ -95,7 +147,7 @@ void	move_w(t_tool *hero)
 	// 	hero->pdp.posx += hero->pdp.dirx * 0.1;//why 0.1
 	// 	hero->pdp.posy += hero->pdp.diry * 0.1;
 
-	}
+
 	// if (hero->map[(int)hero->pdp.posy - 1][(int)hero->pdp.posx] != '1')
 	// {
 	// 	hero->map[(int)hero->pdp.posy][(int)hero->pdp.posx] = '0';

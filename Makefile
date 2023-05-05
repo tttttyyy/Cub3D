@@ -2,10 +2,10 @@ NAME      	= cub3D
 SRCS      	= $(wildcard ./game/*.c ./parse/*.c)
 OBJS      	= $(SRCS:.c=.o)
 CC			= cc
-INCLUDE 	= -I./headers -I./mlx
+INCLUDE 	= -I./headers #-I./mlx
 RM			= rm -rf
 CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address -g3
-M_FLAGS		= -Lmlx -lmlx  -framework OpenGL -framework AppKit  #-Lmlx
+M_FLAGS		= -lmlx  -framework OpenGL -framework AppKit  #-Lmlx
 
 %.o : %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -Imlx -o $@ -c $<
