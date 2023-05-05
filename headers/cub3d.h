@@ -22,6 +22,7 @@
 # define WIDTH 1024
 # define HEIGHT 512
 # define MOVE_SPEED 0.2
+# define ROTATE_SPEED 0.15
 
 # include <unistd.h>
 # include <math.h>
@@ -89,5 +90,6 @@ int		create_trgb(int r, int g, int b);
 void	get_addr(t_tool *hero);
 void	init_structs(t_tool *hero);
 void	init_win(t_tool *hero);
+void	rotate_right(t_tool *hero, double rotate);
 
 #endif

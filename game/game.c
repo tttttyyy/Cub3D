@@ -15,26 +15,20 @@
 int	move_player(int key, t_tool *hero)
 {
 	// hero->pdp.pa = 90;
-	if (key == 0 || key == 123)
-	{
+	if (key == 0)
 		move_a(hero);
-	}
-	else if (key == 1 || key == 125)
-	{
+	else if (key == 1)
 		move_s(hero);
-	}
-	else if (key == 2 || key == 124)
-	{
+	else if (key == 2)
 		move_d(hero);
-	}
-	else if (key == 13 || key == 126)
-	{
+	else if (key == 13)
 		move_w(hero);
-	}
 	else if (key == 53)
-	{
 		exit(0); //exit_game(hero);
-	}
+	if (key == 124)
+		rotate_right(hero, -ROTATE_SPEED);
+	if (key == 123)
+		rotate_right(hero, ROTATE_SPEED);
 	init_win(hero);
 	return (0);
 }
@@ -341,6 +335,7 @@ void	game(t_tool *hero)
 	// mlx_pixel_put(hero->mlx, hero->mlx_win, hero->pdp.posx, hero->pdp.posy, 0x00FF0000);
 	mlx_hook(hero->mlx_win, 17, 1L << 0, exit_game, hero);
 	mlx_hook(hero->mlx_win, 2, 1L << 0, move_player, hero);
+	// mlx_hook(hero->mlx_win, 6, 0L, mouse_, hero);
 	// mlx_loop_hook(hero->mlx, start, hero);
 	mlx_loop(hero->mlx);
 }

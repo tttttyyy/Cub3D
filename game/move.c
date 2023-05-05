@@ -12,6 +12,22 @@
 
 #include "cub3d.h"
 
+void	rotate_right(t_tool *hero, double rotate)
+{
+	double	old_pos;
+
+	old_pos = hero->pdp.dirx;
+	hero->pdp.dirx = old_pos * cos(rotate) - \
+	hero->pdp.diry * sin(rotate);
+	hero->pdp.diry = old_pos * sin(rotate) + \
+	hero->pdp.diry * cos(rotate);
+	old_pos = hero->pdp.planex;
+	hero->pdp.planex = old_pos * cos(rotate) - \
+	hero->pdp.planey * sin(rotate);
+	hero->pdp.planey = old_pos * sin(rotate) + \
+	hero->pdp.planey * cos(rotate);
+}
+
 void	move_a(t_tool *hero)
 {
 	int	x;
