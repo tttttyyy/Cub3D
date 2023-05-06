@@ -12,16 +12,36 @@
 
 #include "cub3d.h"
 
-void	def_angle(t_tool *hero)
+void	ignor_space(char *info, int	*i)
 {
-	if (hero->player == 'E')
-		hero->pdp.pa = 0;
-	else if (hero-> player == 'N')
-		hero->pdp.pa = 90;
-	else if (hero-> player == 'W')
-		hero->pdp.pa = 180;
-	else if (hero-> player == 'S')
-		hero->pdp.pa = 270;
+	while (info[*i] && !is_space(info[*i]))
+		(*i)++;
+}
+
+int	ft_cmp(char **array)
+{
+	int		tmp;
+
+	tmp = 0;
+	tmp = ft_atoi(array[0]);
+	if (tmp < 0 || tmp > 255)
+	{
+		ft_free_matrix(array);
+		return (3);
+	}
+	tmp = ft_atoi(array[1]);
+	if (tmp < 0 || tmp > 255)
+	{
+		ft_free_matrix(array);
+		return (2);
+	}
+	tmp = ft_atoi(array[2]);
+	if (tmp < 0 || tmp > 255)
+	{
+		ft_free_matrix(array);
+		return (1);
+	}
+	return (0);
 }
 
 t_tool	parser(char *path)
@@ -35,7 +55,6 @@ t_tool	parser(char *path)
 	check_info(info);
 	check_map(info);
 	hero = init_hero(info);
-	def_angle(&hero);
 	ft_free_matrix(info);
 	return (hero);
 }

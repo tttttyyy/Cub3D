@@ -38,32 +38,34 @@ int	ft_check_file(char *path)
 	return (fd);
 }
 
+void	map(char *curr, char **str, char *tmp)
+{
+	if (whites(curr))
+		exit_false_map();
+	*str = ft_strjoin(tmp, curr);
+}
+
 char	**read_file(char *path)
 {
 	char	*curr;
 	char	*tmp;
 	char	*str;
 	char	**matr;
-	int		fd;
-	int		cycle;
+	int		fd[2];
 
-	cycle = 0;
+	fd[1] = 0;
 	str = ft_strdup("");
-	fd = ft_check_file(path);
-	curr = get_next_line(fd);
+	fd[0] = ft_check_file(path);
+	curr = get_next_line(fd[0]);
 	while (curr)
 	{
 		tmp = str;
-		if (!whites(curr) && ++cycle <= 6)
+		if (!whites(curr) && ++fd[1] <= 6)
 			str = ft_strjoin(tmp, curr);
-		else if (cycle > 6)
-		{
-			if (whites(curr))
-				exit_false_map();
-			str = ft_strjoin(tmp, curr);
-		}
+		else if (fd[1] > 6)
+			map(curr, &str, tmp);
 		free(curr);
-		curr = get_next_line(fd);
+		curr = get_next_line(fd[0]);
 	}
 	matr = ft_split(str, '\n');
 	free(str);
