@@ -59,7 +59,7 @@ char	**read_file(char *path)
 		else if (cycle > 6)
 		{
 			if (whites(curr))
-				exit_false_map();//stex petqa maqrel durs galucel
+				exit_false_map();
 			str = ft_strjoin(tmp, curr);
 		}
 		free(curr);

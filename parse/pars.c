@@ -36,8 +36,6 @@ t_tool	parser(char *path)
 	check_map(info);
 	hero = init_hero(info);
 	def_angle(&hero);
-	// init_params(&hero);
 	ft_free_matrix(info);
-	// print_hero(hero);
 	return (hero);
 }

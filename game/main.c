@@ -15,6 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_tool	hero;
+
 	if (argc != 2)
 	{
 		write(2, "Must map path as argument\n", 27);
@@ -22,6 +23,5 @@ int	main(int argc, char **argv)
 	}
 	hero = parser(argv[1]);
 	game(&hero);
-	// system("leaks cub3D");
 	return (0);
 }

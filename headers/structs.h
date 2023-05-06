@@ -113,14 +113,10 @@ typedef struct s_tool
 	void	*so;
 	void	*we;
 	void	*ea;
-	// char	*add[5];
-	// int		bits_per_pixel[5];
-	// int		line_length[5];
-	// int		endian[5];
 	int		index;
 	int		mx;
 	int		my;
-	double		dis;
+	double	dis;
 	int		linelen;
 	char	**map;
 	char	player;
@@ -136,7 +132,6 @@ typedef struct s_tool
 	t_data	data;
 	void	*mlx;
 	void	*mlx_win;
-	// void	*img;
 	void	*ptr;
 	char	*img;
 	double	stepy;

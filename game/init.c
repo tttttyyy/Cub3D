@@ -1,8 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgalstya <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/05 16:10:07 by lgalstya          #+#    #+#             */
+/*   Updated: 2023/05/05 16:10:08 by lgalstya         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
+
+double	deg_to_rad(double degr)
+{
+	return (degr * PI / 180.0);
+}
 
 void	init_struct_game(t_tool *hero)
 {
-	// hero = malloc(sizeof(t_tool));
 	hero->c = 0;
 	hero->f = 0;
 	hero->index = 0;
@@ -12,20 +28,7 @@ void	init_struct_game(t_tool *hero)
 	hero->so = 0;
 	hero->ea = 0;
 	hero->we = 0;
-	// hero->game->x = 0;
-	// hero->game->y = 0;
 }
-
-// void	init_struct_index(t_tool *hero)
-// {
-// 	hero->index = malloc(sizeof(t_index));
-// 	hero->index->index_no = 0;
-// 	hero->index->index_so = 0;
-// 	hero->index->index_ea = 0;
-// 	hero->index->index_we = 0;
-// 	hero->index->index_c = 0;
-// 	hero->index->index_f = 0;
-// }
 
 void	init_struct_img(t_tool *hero)
 {
@@ -47,7 +50,6 @@ void	init_struct_img(t_tool *hero)
 
 void	init_struct_raycasting(t_tool *hero)
 {
-	// hero->pdp. malloc(sizeof(t_raycasting));
 	hero->pdp.perpwalldist = 0;
 	hero->pdp.deltadistx = 0;
 	hero->pdp.lineheight = 0;
@@ -75,9 +77,7 @@ void	init_struct_raycasting(t_tool *hero)
 
 void	init_structs(t_tool *hero)
 {
-
 	init_struct_raycasting(hero);
-	// init_struct_index(hero);
 	init_struct_game(hero);
 	init_struct_img(hero);
 }

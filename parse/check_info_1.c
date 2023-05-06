@@ -12,38 +12,46 @@
 
 #include "cub3d.h"
 
+int	ft_cmp(char **array)
+{
+	int		tmp;
+
+	tmp = 0;
+	tmp = ft_atoi(array[0]);
+	if (tmp < 0 || tmp > 255)
+	{
+		ft_free_matrix(array);
+		return (3);
+	}
+	tmp = ft_atoi(array[1]);
+	if (tmp < 0 || tmp > 255)
+	{
+		ft_free_matrix(array);
+		return (2);
+	}
+	tmp = ft_atoi(array[2]);
+	if (tmp < 0 || tmp > 255)
+	{
+		ft_free_matrix(array);
+		return (1);
+	}
+	return (0);
+}
+
 int	check_rgb_number(char *str, int i)
 {
 	int		count;
 	char	**array;
-	int		tmp;
 
 	array = NULL;
-	tmp = 0;
 	count = count_com(str, i);
 	if (count > 3)
 		return (1);
 	array = ft_split(str + i, ',');
 	if (array[0] && array[1] && array[2])
 	{
-		tmp = ft_atoi(array[0]);
-		if (tmp < 0 || tmp > 255)
-		{
-			ft_free_matrix(array);
-			return (3);
-		}
-		tmp = ft_atoi(array[1]);
-		if (tmp < 0 || tmp > 255)
-		{
-			ft_free_matrix(array);
+		if (ft_cmp(array) != 0)
 			return (2);
-		}
-		tmp = ft_atoi(array[2]);
-		if (tmp < 0 || tmp > 255)
-		{
-			ft_free_matrix(array);
-			return (1);
-		}
 	}
 	else
 	{

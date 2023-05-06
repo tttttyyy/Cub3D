@@ -6,7 +6,7 @@
 /*   By: tyenokya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 16:40:07 by tyenokya          #+#    #+#             */
-/*   Updated: 2023/04/23 16:40:09 by tyenokya         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:55:30 by lgalstya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 # include <stdio.h>
 # include "structs.h"
 # include <mlx.h>
-// # include "./mlxopengl/mlx.h"
 
 t_tool	parser(char *path);
 void	check_path(char *path);
@@ -74,14 +73,20 @@ void	move_a(t_tool *hero);
 void	move_s(t_tool *hero);
 void	move_d(t_tool *hero);
 void	move_w(t_tool *hero);
+int		start(t_tool *hero);
 char	get_sym(int mx, int my, t_tool *hero);
 void	put_sym(int mx, int my, t_tool *hero, char c);
 void	print_hero(t_tool hero);
-double		fix_angle(double a);
+double	fix_angle(double a);
 void	xpm_to_image(t_tool *hero);
 double	ray_dist(t_ray *ray);
-int     start(t_tool *hero);
-double degToRad(int a);
+float	ft_abs(float num);
+int     move_player(int key, t_tool *hero);
+void	norm_init_win(t_tool *hero);
+int	    check_nwse(t_tool *hero);
+int     ft_texx(t_tool *hero, int n);
+void	find_pos_player(t_tool *hero);
+void	continue_init_win(t_tool *hero);
 void	create_map(t_tool *hero);
 void	raycasting(t_tool *hero, t_ray *ray);
 void	draw_line(t_tool *hero, int i);
