@@ -36,6 +36,13 @@ t_gps	init_coordin(char **info)
 	return (crd);
 }
 
+void	atoi_rgb(char **array, t_rgb *rgb)
+{
+	rgb->r = ft_atoi(array[0]);
+	rgb->g = ft_atoi(array[1]);
+	rgb->b = ft_atoi(array[2]);
+}
+
 t_rgb	init_colors(char **info, char c)
 {
 	t_rgb	rgb;
@@ -56,11 +63,7 @@ t_rgb	init_colors(char **info, char c)
 			tmp = get_texture(info[i]);
 			array = ft_split(tmp, ',');
 			if (array[0] && array[1] && array[2])
-			{
-				rgb.r = ft_atoi(array[0]);
-				rgb.g = ft_atoi(array[1]);
-				rgb.b = ft_atoi(array[2]);
-			}
+				atoi_rgb(array, &rgb);
 		}	
 		i++;
 	}
