@@ -12,6 +12,20 @@
 
 #include "cub3d.h"
 
+void	check_xpm(char *xpm)
+{
+	int		len;
+	char	*ber;
+
+	len = ft_strlen(xpm);
+	if (len <= 4)
+		exit_false_map_form();
+	len -= 4;
+	ber = ".xpm";
+	if (ft_strncmp(xpm + len, ber, len) != 0)
+		exit_false_map_form();
+}
+
 int	main(int argc, char **argv)
 {
 	t_tool	hero;

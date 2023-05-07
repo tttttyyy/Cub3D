@@ -48,12 +48,16 @@ t_tool	parser(char *path)
 {
 	char	**info;
 	t_tool	hero;
+	int		i;
 
+	i = 0;
 	check_path(path);
 	info = read_file(path);
 	hero.map = info;
 	check_info(info);
 	check_map(info);
+	while (info && info[i] && i < 4)
+		check_xpm(info[i++]);
 	hero = init_hero(info);
 	ft_free_matrix(info);
 	return (hero);

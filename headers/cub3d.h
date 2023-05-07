@@ -97,6 +97,7 @@ void	init_structs(t_tool *hero);
 void	init_win(t_tool *hero);
 void	rotate_right(t_tool *hero, double rotate);
 void	ignor_space(char *info, int	*i);
-int	ft_cmp(char **array);
+int		ft_cmp(char **array);
+void	check_xpm(char *xpm);
 
 #endif
