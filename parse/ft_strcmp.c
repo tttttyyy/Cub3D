@@ -35,7 +35,7 @@ int	ft_strrchr(char *s, char c)
 	int	ret;
 
 	ret = 0;
-	while (*s)
+	while (s && *s)
 	{
 		if (*s == c)
 			ret = 1;

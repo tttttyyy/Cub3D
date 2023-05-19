@@ -26,10 +26,14 @@ void	check_path(char *path)
 		exit_false_map_form();
 }
 
-int	check_around(char **info, int i, int j)
+int	check_around(char **info, int i, int j, int h)
 {
-	if (!info[i][j - 1] || !info[i][j + 1] ||
-		!info[i - 1][j] || !info[i + 1][j])
+	if (i == 0 || i == h)
+		return (1);
+	else if (j == 0)
+		return (2);
+	if (!info[i][j - 1] || (info[i][j + 1] && !info[i][j + 1])
+		|| !info[i - 1][j] || (info[i + 1] && !info[i + 1][j]))
 		return (1);
 	if (!ft_strrchr(CHARS, info[i][j - 1])
 		|| !ft_strrchr(CHARS, info[i][j + 1]))
@@ -62,7 +66,7 @@ void	check_map(char **info)
 			if (info[i][j] && ft_strrchr(HERO, info[i][j]))
 				++count;
 			if ((info[i][j] == '0' || ft_strchr(HERO, info[i][j])) &&
-				check_around(info, i, j) != 0)
+				check_around(info, i, j, get_map_height(info) + 5) != 0)
 				exit_false_map();
 			++j;
 		}

@@ -98,6 +98,7 @@ void	check_info(char **info)
 	c_path = 0;
 	c_rgb = 0;
 	check_count(info);
+	check_fc(info);
 	while (info && info[i] && i < 5)
 	{
 		f_path = check_texture_line(info[i]);

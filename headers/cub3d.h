@@ -99,5 +99,6 @@ void	rotate_right(t_tool *hero, double rotate);
 void	ignor_space(char *info, int	*i);
 int		ft_cmp(char **array);
 void	check_xpm(char *xpm);
+void	check_fc(char **info);
 
 #endif
