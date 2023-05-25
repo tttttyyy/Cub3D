@@ -55,6 +55,8 @@ int	check_rgb(char *info)
 	j++;
 	while (info[j] && !is_space(info[j]))
 		j++;
+	if (!info[j])
+		return (7);
 	if (info[j] && check_rgb_line(info, j))
 		return (4);
 	while (info[j] && !is_space(info[j]))

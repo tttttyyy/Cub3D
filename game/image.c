@@ -38,9 +38,6 @@ int	create_trgb(int r, int g, int b)
 
 void	xpm_to_image(t_tool *hero)
 {
-	int		i;
-
-	i = 0;
 	hero->mlx = mlx_init();
 	hero->mlx_win = mlx_new_window(hero->mlx, WIDTH, HEIGHT, "Cub3D");
 	hero->so = mlx_xpm_file_to_image(hero->mlx, hero->coordin.so,
